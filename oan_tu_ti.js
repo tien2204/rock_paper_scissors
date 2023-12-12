@@ -20,7 +20,7 @@ function getComputerChoice() {
     return choice;
 }
 
-const compare = (playerSelection, computerSelection) => {
+function playRound (playerSelection, computerSelection) {
 
     if(playerSelection === computerSelection) {
         return 'Hoa';
@@ -53,27 +53,34 @@ const compare = (playerSelection, computerSelection) => {
 }
 
 
-let thang = 0, thua = 0, hoa = 0;
+function game () {
+    let thang = 0, thua = 0, hoa = 0;
 
-for(let i = 0; i < 5; i++) {
-    let playerSelection = prompt('Choose one', 'rock');
-    let computerSelection = getComputerChoice();
-    let x = compare(playerSelection, computerSelection);
-    console.log(x);
-    if(x === 'Win') {
-        thang++;
-    } else if(x === 'Lose') {
-        thua++;
-    } else {
-        hoa++;
+    for(let i = 0; i < 5; i++) {
+        let playerSelection = prompt('Choose one', 'rock').toLowerCase;
+        let computerSelection = getComputerChoice();
+        let x = playRound(playerSelection, computerSelection);
+        console.log(x);
+        if(x === 'Win') {
+            thang++;
+            console.log('WIn');
+        } else if(x === 'Lose') {
+            thua++;
+            console.log('Lose');
+        } else {
+            hoa++;
+            console.log('Hoa');
+        }
     }
+
+    if(thang > 2) {
+        console.log('NON');
+    } else if(thua > 2) {
+        console.log('Ngu');
+    } else {
+        console.log("Van ngu");
+    }
+
 }
 
-if(thang > 2) {
-    console.log('NON');
-} else if(thua > 2) {
-    console.log('Ngu');
-} else {
-    console.log("Van ngu");
-}
-
+console.log(game);
