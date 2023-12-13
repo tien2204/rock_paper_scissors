@@ -62,7 +62,7 @@ function game () {
         let x = playRound(playerSelection, computerSelection);
         if(x === 'Win') {
             thang++;
-            console.log('WIn');
+            console.log('Win');
         } else if(x === 'Lose') {
             thua++;
             console.log('Lose');
