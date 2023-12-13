@@ -60,7 +60,6 @@ function game () {
         let playerSelection = prompt('Choose one', 'rock').toLowerCase;
         let computerSelection = getComputerChoice();
         let x = playRound(playerSelection, computerSelection);
-        console.log(x);
         if(x === 'Win') {
             thang++;
             console.log('WIn');
@@ -83,4 +82,4 @@ function game () {
 
 }
 
-console.log(game);
+console.log(game());
