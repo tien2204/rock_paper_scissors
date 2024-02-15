@@ -86,16 +86,8 @@ function clickEvent (playerSelection) {
     if(endGame ()) {
         loiKet ();
     }
-
-    if(thang > 2) {
-        console.log('NON');
-    } else if(thua > 2) {
-        console.log('Ngu');
-    } else {
-        console.log("Van ngu");
-    }
-
 }
+
 function bonusScore () {
     if(winner === 'none') {
         thong_bao.textContent = 'Hoa voi mt for real???';
