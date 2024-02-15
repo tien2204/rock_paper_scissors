@@ -56,6 +56,10 @@ function playRound (playerSelection, computerSelection) {
 function game () {
     let thang = 0, thua = 0, hoa = 0;
 
+    let rock = document.querySelector('#Rock');
+    let paper = document.querySelector('#Paper');
+    let scissor = document.querySelector('#Scissors');
+
     for(let i = 0; i < 5; i++) {
         let playerSelection = prompt('Choose one', 'rock');
         let computerSelection = getComputerChoice();
