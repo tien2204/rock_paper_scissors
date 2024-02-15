@@ -1,3 +1,6 @@
+let playerScore = 0;
+let compScore = 0;
+let winner = '';
 
 function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3) + 1;
@@ -23,53 +26,65 @@ function getComputerChoice() {
 function playRound (playerSelection, computerSelection) {
 
     if(playerSelection === computerSelection) {
-        return 'Hoa';
+        winner = 'none';
     }
 
     if(computerSelection === 'rock') {
         if(playerSelection === 'paper') {
-            return 'Win';
+            winner = 'player';
+            playerScore++;
         } else { 
-            return 'Lose';
+            winner = 'computer';
+            compScore++;
         }
     }
 
     if(computerSelection === 'paper') {
-        if(playerSelection = 'rock') {
-            return 'Lose';
+        if(playerSelection === 'rock') {
+            winner = 'computer';
+            compScore++;
         } else { 
-            return 'Win';
+            winner = 'player';
+            playerScore++;
         }
     }
 
     if(computerSelection === 'scissor') {
         if(playerSelection === 'paper') {
-            return 'Lose';
+            winner = 'computer';
+            compScore++;
         } else { 
-            return 'Win';
+            winner = 'player';
+            playerScore++;
         }
     }
 
 }
 
+function endGame () {
+    return playerScore === 5 || compScore === 5
+}
 
-function game () {
-    let thang = 0, thua = 0, hoa = 0;
+const thong_bao = document.querySelector('#whoWin');
+const playerDiv = document.querySelector('#playerScore');
+const computerDiv = document.querySelector("#computerScore");
 
-    for(let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Choose one', 'rock').toLowerCase;
-        let computerSelection = getComputerChoice();
-        let x = playRound(playerSelection, computerSelection);
-        if(x === 'Win') {
-            thang++;
-            console.log('WIn');
-        } else if(x === 'Lose') {
-            thua++;
-            console.log('Lose');
-        } else {
-            hoa++;
-            console.log('Hoa');
-        }
+let rock = document.querySelector('.Rock');
+rock.addEventListener('click', () => clickEvent(rock));
+
+let paper = document.querySelector('.Paper');
+paper.addEventListener('click', () => clickEvent(paper));
+
+let scissor = document.querySelector('.Scissors');
+scissor.addEventListener('click', () => clickEvent(scissor));
+
+function clickEvent (playerSelection) {
+
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    bonusScore();
+    if(endGame ()) {
+        loiKet ();
     }
 
     if(thang > 2) {
@@ -81,5 +96,21 @@ function game () {
     }
 
 }
+function bonusScore () {
+    if(winner === 'none') {
+        thong_bao.textContent = 'Hoa voi mt for real???';
+    } else if (winner === 'player') {
+        thong_bao.textContent = 'Rua del chiu dc';
+    } else if (winner === 'computer') {
+        thong_bao.textContent = 'Ngu';
+    }
+    
+    playerDiv.textContent = `Player : ${playerScore}`;
+    computerDiv.textContent = `Computer: ${compScore}`;
+}
 
-console.log(game());
+function loiKet () {
+    return playerScore > compScore
+        ? (alert('U won'))
+        : (alert('U lose'))
+}
